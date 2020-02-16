@@ -17,7 +17,6 @@
             try {
                 //session.getAttribute("logged");??
                 s = (Sesion) request.getSession().getAttribute("logged");
-                response.sendRedirect("http://localhost:8080/Login2/index.jsp");
             if(!s.getLogged()){
                 System.out.println("NOOO ESTAS LOGEADIOOOOO");
                 response.sendRedirect("http://localhost:8080/Login2/index.jsp");
@@ -47,7 +46,7 @@
                 <td>
                 Hello user, here is the <b>description-<%= request.getParameter("id")%></b> file!
                 <br/>
-                <textarea readonly rows="50" cols="50" name="newTxt">
+                <textarea readonly rows="30" cols="50" name="newTxt">
                     <% if(id!=null){
                         sc = new Scanner(new File("c:\\Files\\Descripcion-"+s.getID()+".txt"));
                         while(sc.hasNext()) out.println(sc.nextLine());
@@ -67,7 +66,7 @@
 
                     here is <b>your description-<%= request.getParameter("id")%></b> file!
                     <br/>
-                    <textarea rows="50" cols="50" name="pullreq">DON´T FORGET THE TIME LOG YOU FUCKING OP</textarea>    
+                    <textarea rows="30" cols="50" name="pullreq">DONÂ´T FORGET THE TIME LOG YOU FUCKING OP</textarea>    
                 </td>
             </form>
             </tr>

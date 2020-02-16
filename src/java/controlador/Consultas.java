@@ -46,7 +46,7 @@ public class Consultas extends Conexion {
         try {
             //this comment is ok if the superuser asign diferents task to different people
             //RS=query.executeQuery("SELECT PKey, project, language, state, description FROM todo where id_user="+this.userId+";");
-            RS=query.executeQuery("SELECT PKey, project, language, state, description FROM todo;");
+            RS=query.executeQuery("SELECT PKey, project, language, state, description FROM todo where id_user = "+this.userId+";");
             
             //OJOO lista multidimensionall NAAHH
             //conocemos la longitud de la row asiq una lista de String[]
@@ -111,6 +111,41 @@ public class Consultas extends Conexion {
         }
         return toReturn;    
         
+    }
+    
+    public Boolean deleteTodo(String id){
+        try {
+            query = con.createStatement();
+            System.out.println("aqui llegamos?");
+            int i = query.executeUpdate("DELETE FROM todo where PKey = "+id+";");
+            System.out.println("i = "+i+"\n lineas borradas");
+            System.out.println(Cloud.deleteFile(id));
+            
+            //comprobar esto..
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("DELETE FROM todo where PKey = "+id+"; FAILED");
+        }
+        
+        return false;
+    }
+    
+    public Boolean updateState(String id, String newState){
+        try {
+            query = con.createStatement();
+            System.out.println("aqui llegamos?");
+            int i = query.executeUpdate("UPDATE todo SET state ="+newState+" where PKey = "+id+";");
+            System.out.println("i = "+i+"\n actualizadas");
+            System.out.println(Cloud.deleteFile(id));
+            //comprobar esto..
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("UPDATE todo SET state ="+newState+" where PKey = "+id+";FAILED");
+        }
+        
+        return false;
     }
     
     /*

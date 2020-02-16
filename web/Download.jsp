@@ -14,9 +14,9 @@
         <%  //if Sesion is not instanciated in index.jsp (cos user never visit it, this throws NullPointerException, this code should be improved 
             try {
                 //session.getAttribute("logged");??
-                Sesion s = (Sesion) request.getSession().getAttribute("logged");
+                Sesion david = (Sesion) request.getSession().getAttribute("logged");
             
-                if(!s.getLogged()){
+            if(!david.getLogged()){
                 response.sendRedirect("http://localhost:8080/Login2/index.jsp");
             }
             }catch(Exception e){
@@ -28,8 +28,10 @@
     </head>
     <body>
         <%
-            String id = request.getParameter("id");
-            String downLink = Cloud.waitForIt(id);
-            response.sendRedirect(downLink);%>
+        //out.println(Cloud.download(request.getParameter("id")));
+         
+         String id = request.getParameter("id");
+         String downLink = Cloud.waitForIt(id);
+         response.sendRedirect(downLink);%>
     </body>
 </html>

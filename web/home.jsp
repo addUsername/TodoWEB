@@ -47,12 +47,11 @@
         
     </head>
     <body>
-        <h3 align="center"> FIRST TO-DO</h3>
-        <% //aqui vamos a pillar el RS de la query y crear la tabla DINAMICAMENTE OMG %>
-        <% 
-           
-           Object[] tabla = s.getTable();
-        %>
+        
+        <div id ="header"><h3 align="center"> FIRST TO-DO</h3>
+        </div>
+        
+        <div id="tables">
         <table border="1" width = "90%">
             
         <tr bgcolor="lightblue">
@@ -60,12 +59,16 @@
             <td>PROJECT</td>
             <td>LANGUAGE</td>
             <td>STATE</td>
-            <td>DESCRIPTION</td>
+            <td colspan="2">DESCRIPTION</td>
         </tr>
         
         <% //creamos (por fin) la tabla dinamica
+           //pero tambien guardamos un array de ids para mstrar en las opciones borrar y actualizar
+            Object[] tabla = s.getTable();
+            Integer[] ids = new Integer[tabla.length];
             for (int i = 0; i<tabla.length ; i++){
                 String [] row=tabla[i].toString().split(",");
+                ids[i]=Integer.parseInt(row[0]);
         %>
             <tr bgcolor="lightyellow">
                 <td><%= row[0] %></td>
@@ -79,10 +82,19 @@
         </table>
         <br/>
         <table  width = "90%">
-        <form action ="home.jsp" method="POST"> 
+        <form action ="add.jsp" method="POST"> 
             <tr>
-                <td align="center" bgcolor="lightblue">Añadir nueva tarea/<td>
-                <td rowspan="2" colspan="2" align="center" bgcolor="lightyellow"<%= s.shouldHide() %> >
+                <td align="center" bgcolor="lightblue" colspan="2">
+                    Añadir nueva tarea<br/>
+                </td>
+                <td align="center" bgcolor="lightblue">
+                    Actualizar estado<br/>
+                </td>
+                <td align="center" bgcolor="lightblue">
+                    Borrar tarea<br/>
+                </td>
+                    
+                <td rowspan="3" colspan="2" align="center" bgcolor="lightyellow"<%= s.shouldHide() %> >
                     <b>Updates pendientes:<br/></b>
                     <% if(lista!=null){ //esto deberia ser innecesario porque deberia estar como hidden.. PERO BUENO
                         for(String update: lista){
@@ -95,37 +107,66 @@
                         %>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    Project <input type="text" name="name"/>
-                    Language <input type="text" name="language"/>
-                    State <input type="number" name="state" min="1" max="4" <%=s.shouldDisable()%>/>                        
-                </td>
+            <tr bgcolor="lightblue">
+                            <td>    
+                    Project <input type="text" name="name" maxlength="50"/>
+                            </td>
+                            <td>
+                    Language <input type="text" name="language" maxlength="10"/>
+                            </td>
+                            <td align="right">ID 
+                                <select name="actualizar_ID" style="width: 35px;">
+                                    <option value="0" selected> </option>
+                                    <%
+                                    for(Integer i:ids){
+                                        %><option value="<%=i%>"><%=i%></option>
+                                    <%}%>
+                                </select>
+                                new State <input type="text" name="newState" min="0" max="4"/>
+                                <input <%=s.shouldDisable()%> type="submit" value="Actualizar" valign="top" />
+                                
+                            </td>
+                            <td align="right">ID
+                                <select name="borrar_ID" style="width: 35px;">
+                                    <option value="0" selected> </option>
+                                    <%
+                                    for(Integer i:ids){
+                                        %><option value="<%=i%>"><%=i%></option>
+                                    <%}%>
+                                </select>
+                                <input <%=s.shouldDisable()%> type="submit" value="Borrar" valign="top" />
+                            </td>
+
+            </tr>
+            <tr bgcolor="lightblue">
+                            <td rowspan="2">DESCRIPTION: <textarea style="width: 100%; border: none" rows="10" name="description"></textarea></td>
+                
+                            <td>
+                    State <input type="number" name="state" min="1" max="4" />
+                            </td>
+                            <td>
+                                <% if(request.getParameter("show")!=null && request.getParameter("show").equals("updated")){
+                                %><p> query actualizada con exito!</p><%
+                                }%>
+                            </td>                            
+                            <td>
+                                <% if(request.getParameter("show")!=null && request.getParameter("show").equals("deleted")){
+                                %><p> query y todos los archivos relacionados borrados con exito!</p><%
+                                }%>
+                            </td>
+                            
             </tr>
             <tr>
-                <td>
-                    DESCRIPTION: <textarea rows="5" colspan="70" name="description" align="top"></textarea>
-                </td>
+                    <td><input <%=s.shouldDisable()%> type="submit" value="submit" valign="top"/>
+                    </td>
+                    <td></td
+                    <td></td>
+                    <td></td>
             </tr>
-                    <td><input type="submit" value="submit" colspan="3" align="right" /> </td>
         </form>
         </table>
-        <%  
-                
-                //debemos generar un string y llamar a addTodo()
-                String input = "'"+request.getParameter("language")+"','"+request.getParameter("name")+"',"+request.getParameter("state");
-                //el objeto s nos salva la vida de manera continuada y nos la lia un poco tb
-                System.out.println(input+" .length = "+input.length());
-                String description = request.getParameter("description");
-                
-                //ESTO ES UN POCO MOVIDA; HAY QUE VER COMO SE IMLEMENTA BIEN Y NO LIARLA CON LOS INPUTS XQ ESTA LINEA SIEMORE SE EJECUTABA Y JODIA LA DB
-                //me lo sigue haciendo, NO ES AQUI
-                //miniregex
-                //matches("^.*[a-z]+.*$") este si
-                //if(input.matches("[a-z0-9]+"))s.addTodo(input);
-                if(input.matches("^.*[a-z]+.*$")&& description !=null){
-                    s.addTodo(input,description);
-                }else System.out.println("No entramos en el addTODO");
-        %>
+        </div>
+         
+        <% //<div><jsp:include page="Indetail.jsp"/></div> %>                   
     </body>
 </html>

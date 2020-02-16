@@ -25,15 +25,15 @@
                     window.location.href='http://localhost:8080/Login2/index.jsp';
                 };
             </script>
-            <% } 
-                //response.sendRedirect("http://localhost:8080/Login2/index.jsp");
+            <% }else{ Boolean a = controlador.Cloud.modifyOriginal(request.getParameter("id"));
+                        response.sendRedirect("http://localhost:8080/Login2/index.jsp");}
+             
             }catch(Exception e){
                 response.sendRedirect("http://localhost:8080/Login2/index.jsp");
             }
             %>
     </head>
     <body>
-        <% Boolean a= controlador.Cloud.modifyOriginal(request.getParameter("id"));
-        out.println("TRUE vamos tuuuuu");%>
+        
     </body>
 </html>
