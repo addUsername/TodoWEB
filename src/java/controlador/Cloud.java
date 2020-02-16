@@ -31,7 +31,8 @@ public class Cloud {
             
             File file =new File(folderPath+"\\Descripcion-"+id+".txt");
             
-            if(file.exists()? file.delete(): file.createNewFile())System.out.println("###### ARCHIVO CREADO");
+            if(file.exists()) file.delete();
+            if(file.createNewFile()) System.out.println("###### ARCHIVO CREADO");
             
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             Date date = new Date(System.currentTimeMillis());
@@ -83,6 +84,14 @@ public class Cloud {
             Logger.getLogger(Cloud.class.getName()).log(Level.SEVERE, null, ex);
         }
         return toReturn;
+    }
+    public static void waitForIt(int i){
+        try {
+            Thread.sleep(i);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Cloud.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     public static String modify(String id,String newTxt){
         
@@ -150,7 +159,15 @@ public class Cloud {
             String updateText ="";
             while(sc.hasNextLine())updateText+=sc.nextLine()+"\n";
             fw.write(updateText);
-            return true;
+            fw.close();
+            sc.close();
+            
+            if (fileUpdate.exists()){
+                fileUpdate.delete();
+                waitForIt(1000);
+                return true;
+            }
+            
             
         } catch (IOException ex) {
             
@@ -166,9 +183,28 @@ public class Cloud {
         return toReturn;
     }
     
-    
-    
-    /*
+    public static Boolean deleteFile(String id){
+        
+        //restamos uno poque el id del archivo y el de la bbdd no coinciden, ya en el prox proyecto
+        File file = new File("c:\\Files\\Descripcion-"+(Integer.parseInt(id)-1)+".txt");
+        File fileUpdate = new File("c:\\Files\\Descripcion-"+(Integer.parseInt(id)-1)+"-UPDATE.txt");
+        if (fileUpdate.exists()) fileUpdate.delete();
+        return (file.exists())? file.delete():false;
+    }
+    public static void deleteTempFiles(){
+        
+        File dir = new File ("C:\\Users\\SERGI\\Documents\\Login2\\web\\");
+ 
+        
+        String[] lista = dir.list();
+        for(String file:lista){
+            if(file.matches("^.*-UPDATE.txt"))
+                System.out.println(dir.getAbsolutePath()+"\\"+file);
+                new File(dir.getAbsolutePath()+"\\"+file).delete();
+                
+        }
+    } 
+        /*
     public static void main(String args[]){
         
         //va de putisima madre

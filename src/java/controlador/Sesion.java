@@ -26,6 +26,9 @@ public class Sesion {
     public void logOut(){
         logged = false;
     }
+    public Boolean updateState(String id, String newState){
+        return consulta.updateState(id, newState);
+    }
     public  Object[] getTable(){
         return this.consulta.getTable();
     }
@@ -43,6 +46,12 @@ public class Sesion {
         this.consulta.addTodo(query);     
         
     }
+    public Boolean deleteTodo(String id){
+        
+        return this.consulta.deleteTodo(id);
+    }
+    
+    
     public String getUser(){
         return this.consulta.getUser();
     }
@@ -59,8 +68,10 @@ public class Sesion {
     public String getID(){
         return this.Pkey;
     }
-    public void setSuperUser(String name){       
+    public void setSuperUser(String name){
+        //aqui y asi añadimos los superusers
         if (name.toLowerCase().equals("sergio")) this.superUser=true;
+        if (name.toLowerCase().equals("gol")) this.superUser=true;
         
     }
     public String[] getUpdateList(){
@@ -68,6 +79,17 @@ public class Sesion {
     }
     public String shouldHide(){
         return (superUser)?"":"hidden";
+    }
+    public String shouldHide(String s){
+        
+        switch(s){
+            case "borrar_ID":
+                return "";
+            case "actualizar_ST":
+                return "";                
+            default:
+                return "hidden";
+        }
     }
     public String shouldDisable(){
         return (superUser)?"":"disabled";
