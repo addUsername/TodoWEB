@@ -7,11 +7,12 @@
 <%@page import="controlador.Sesion"%>
 <%@page import="controlador.Consultas"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>TODO list</title>
     </head>
     <body>
         <h3 align="center"> FIRST TO-DO</h3>
@@ -31,7 +32,10 @@
             Consultas consulta = new Consultas();
             Boolean access = consulta.autentificacion(request.getParameter("user"),request.getParameter("pass"));
             
+            //this will delete all the temp files created in the previous session
             
+            //dios mio esta linea borra todo
+            //logged.deleteTempFiles();
             if (access){
                 logged.setLogged();
                 logged.setAccesToAvoidFutureNon_StaticShit(consulta);
