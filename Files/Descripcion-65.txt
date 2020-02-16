@@ -1,0 +1,33 @@
+
+PROJECT: 'SCRIPTS'
+USER: gol
+2020-02-16
+
+
+
+Python script devuelve un json array con una matriz por ciclo,
+de momento:
+-Inicializa una matriz random
+-aplica reglas originales
+-genera json
+-admite argumentos
+(Python GOL.py arg1 arg2)
+
+por implementar:
+-recibir argumento n, ciclos y matriz inicial
+-cambiar reglas
+-mejoras en la eficiencia a largo plazo (C, threads,
+fragmentar en json mas pequeños..)
+-estadística, quizás como script a parte
+
+
+Javascript
+de momento:
+-genera la animación de manera dinámica
+-exportar animación?
+-action listener control menú (play, pause..)
+-three.js
+
+salu2!, pinta bien
+
+#BRING WITH (L)#

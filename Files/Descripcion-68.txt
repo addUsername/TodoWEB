@@ -1,0 +1,13 @@
+
+PROJECT: 'web'
+USER: gol
+2020-02-16
+
+
+
+Montar un server privado para tener esta aplicación
+ desde el móvil y tal tiene que molar o no.
+
+creo que no es dificil
+
+#BRING WITH (L)#

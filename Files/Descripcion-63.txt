@@ -1,0 +1,25 @@
+
+PROJECT: 'GOLAPP'
+USER: gol
+2020-02-16
+
+
+
+PROJECT: web
+USER: sergio
+2020-02-10
+
+
+
+PROJECTO FIN DE CURSO, Game Of Life, pudiendo cambiar parÃ?Â¡metros, dibujar estado inicial.. y otras versiones parecidas.. 3D, mas estados 0,1,2.. aÃ?Â±adir prop de que no se cumpla, analizar resultados? NN?(Ojala) etc.. en lugar de cuadrados hexÃ?Â¡gonos, seguro que le da mas realismo/dinamismo
+
+me gustarÃ?Â­a Python como backend, mathematica puede ayudar..
+
+buscar la esrtructura necesaria para primero desarrollar el backend del juego y luego poder llamarlo desde web o quizÃ?Â¡s Android (en ambos casos se cumple lo de desarrollo de aplicaciones multiplataforma (py correra en win y Linux (via tkinter o directamente ya con Swing), en web java(JSP y Servlet me sobrarÃ?Â­a para una versiÃ?Â³n web privada, quizÃ?Â¡s toque Spring y hacerlo publico), en Android con java quizÃ?Â¡s? etc..))..
+
+Python se encarga de generar las imÃ?Â¡genes le llame quien le llame.. el resto de tecnologÃ?Â­as las gestiona.. parece sencillo es un puto print(img) en todas las plataformas
+
+
+#BRING WITH (L)#
+
+#BRING WITH (L)#

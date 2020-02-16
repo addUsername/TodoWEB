@@ -1,0 +1,12 @@
+
+PROJECT: 'JSP'
+USER: gol
+2020-02-16
+
+
+
+A Little step further, probably not spring, but a
+ strong home page design, user page, sharing creations.jsp,
+etc..
+
+#BRING WITH (L)#

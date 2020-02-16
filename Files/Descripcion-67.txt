@@ -1,0 +1,20 @@
+
+PROJECT: 'BBDD'
+USER: gol
+2020-02-16
+
+
+
+Login table:
+id
+user
+pass
+
+Files table:
+id
+user_id
+linkFile
+seed
+name
+
+#BRING WITH (L)#
