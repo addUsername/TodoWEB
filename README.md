@@ -7,3 +7,6 @@ All of this is information in stored in a DB (files will be save as link), gener
 This project was my first attempt on web, i like it.. hope you too
 
 Have fun!
+
+<img src="/screenshots/home.jpg">
+
